@@ -1,25 +1,21 @@
 import React from "react";
 import "./Product.scss";
 import StarSharpIcon from "@material-ui/icons/StarSharp";
-
+import { useStateValue } from "./Store";
 
 function Product(props) {
-
-
+  const { id, title, price, image, rating } = props;
+  const {
+    globalState: { basket },
+    dispatch,
+  } = useStateValue();
   const addToBasket = () => {
-    // dispatch({
-    //   type:"ADD_TO_BASKET",
-    //   item:{
-    //     id,
-    //     title,
-    //     image,
-    //     price,
-    //     rating
-    //   }
-    // })
+    dispatch({
+      type: "ADD_TO_BASKET",
+      item: { id, title, price, image, rating },
+    });
   };
 
-  const { id, title, price, image, rating } = props;
   return (
     <div className="product">
       <div className="product-info">
@@ -31,8 +27,8 @@ function Product(props) {
         <div className="product__rating">
           {Array(rating)
             .fill()
-            .map((_,index) => (
-              <StarSharpIcon key={index}/>
+            .map((_, index) => (
+              <StarSharpIcon key={index} />
             ))}
         </div>
       </div>

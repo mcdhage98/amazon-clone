@@ -8,8 +8,8 @@ import {useStateValue} from './Store'
 function Header() {
 
   const{globalState:{basket}}=useStateValue()
+  console.log("basket length"+basket.length,basket)
   
-
  
   return (
     <nav className="header">
@@ -55,7 +55,7 @@ function Header() {
       <Link to="/checkout" className="header__link">
         <div className="header__optionBasket">
           <ShoppingBasketIcon />
-          <p className="header__optionLine2">{basket.length}</p>
+          <p className="header__optionLine2">{basket?.length}</p>
         </div>
       </Link>
     </nav>
